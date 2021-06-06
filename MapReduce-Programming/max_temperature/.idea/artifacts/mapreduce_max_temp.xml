@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mapreduce_max_temp">
+    <output-path>$PROJECT_DIR$/out/artifacts/mapreduce_max_temp</output-path>
+    <root id="archive" name="mapreduce_max_temp.jar">
+      <element id="module-source" name="DSPP_Exercise" />
+      <element id="module-output" name="DSPP_Exercise" />
+    </root>
+  </artifact>
+</component>
