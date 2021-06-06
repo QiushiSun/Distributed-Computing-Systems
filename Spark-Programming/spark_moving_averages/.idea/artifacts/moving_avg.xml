@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="moving_avg">
+    <output-path>$PROJECT_DIR$/out/artifacts/moving_avg</output-path>
+    <root id="archive" name="moving_avg.jar">
+      <element id="module-output" name="DSPP_Exercise" />
+      <element id="module-source" name="DSPP_Exercise" />
+    </root>
+  </artifact>
+</component>
