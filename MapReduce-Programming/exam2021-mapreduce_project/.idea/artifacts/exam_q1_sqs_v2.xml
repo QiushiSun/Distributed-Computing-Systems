@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="exam_q1_sqs_v2">
+    <output-path>$PROJECT_DIR$/out/artifacts/exam_q1_sqs_v2</output-path>
+    <root id="archive" name="exam_q1_sqs_v2.jar">
+      <element id="module-source" name="DSPP_Exercise" />
+      <element id="module-output" name="DSPP_Exercise" />
+    </root>
+  </artifact>
+</component>
