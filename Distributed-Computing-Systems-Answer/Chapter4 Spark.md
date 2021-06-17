@@ -26,7 +26,7 @@
 
 Standalone Client模式
 
-<img src="/Users/sunqiushi/Desktop/徐辰review/standalone-client.png" alt="standalone-client" style="zoom:50%;" />
+<img src="static/standalone-client.png" alt="standalone-client" style="zoom:50%;" />
 
 Standalone Cluster模式
 
