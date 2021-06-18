@@ -34,13 +34,13 @@ Standalone Cluster模式
 
 **5.Spark如何划分DAG中的Stage？**
 
-一个DAG由多个Stage组成
+一个DAG由多个Stage组成，DAG Scheduler通过分析各个RDD中的分区之间的依赖关系来决定如何划分Stage。简单来说，DAG Scheduler针对DAG做反向解析，遇到宽依赖则生成新的Stage，遇到窄依赖就把该Operator加入到当前Stage中，从而使得窄依赖尽量被划分在同一个Stage中。因此，Stage内部生成的RDD之间是窄依赖关系，而Stage输出RDD和下一Stage输入RDD之间是宽依赖关系。也就是说，只有Stage之间的数据传输需要Shuffle。
 
 **6.Spark中的应用和作业是何种关系**
 
 应用=Application；作业=Job
 
-从逻辑角度看：一个Application由一个或多个DAG组成，
+从逻辑角度看：一个Application由一个或多个DAG组成，一个DAG对应物理执行角度为一个Job
 
 从物理执行角度看：一个Application等于一个或多个Job
 
@@ -75,4 +75,4 @@ Stage之间数据交换：Spark在Stage之间数据交换时需要Shuffle，Shuf
 
 适用于需要节约内存的场景，如小表和大表自然连接（部门表join雇员表）
 
-大表的Shuffle开销大，把小表广播出去，避免大表进行Shuffle
+大表的Shuffle开销大，把小表广播出去可以避免大表进行Shuffle
