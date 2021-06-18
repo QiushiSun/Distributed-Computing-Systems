@@ -15,7 +15,7 @@
 **3.什么是RDD Lineage？如果Lineage较长，如何加快故障恢复？**
 
 1. RDD Lineage是Driver中SparkContext维护的记录RDD转换的DAG，RDD Lineage记录的是粗颗粒度的特点数据Transformation操作。若出现故障，可以利用RDD Lineage重新计算丢失分区进行故障恢复
-2. 如果Lineage较长，引入检查点机制将RDD写入外部可靠的（本身具有容错机制）分布式文件系统，例如HDFS（在实现层面，写检查点的过程是一个独立的作业，在用户作业结束后运行）
+2. 如果RDD Lineage较长，或者RDD Lineage中存在大量的宽依赖，恢复过程的代价较高。引入检查点机制将RDD写入外部可靠的（本身具有容错机制）分布式文件系统，例如HDFS（在实现层面，写检查点的过程是一个独立的作业，在用户作业结束后运行）
 
 **4.请简述Standalone Clinet与Standalone Cluster两种模式下Spark架构之间的区别，并画出两种模式下的架构图**
 
@@ -34,11 +34,15 @@ Standalone Cluster模式
 
 **5.Spark如何划分DAG中的Stage？**
 
-
+一个DAG由多个Stage组成
 
 **6.Spark中的应用和作业是何种关系**
 
+应用=Application；作业=Job
 
+从逻辑角度看：一个Application由一个或多个DAG组成，
+
+从物理执行角度看：一个Application等于一个或多个Job
 
 **7.Spark中Stage和Task有怎样的联系？**
 
@@ -53,8 +57,22 @@ Stage之间数据交换：Spark在Stage之间数据交换时需要Shuffle，Shuf
 - Shuffle Read阶段：ShuffleMapTask或者ResultTask根据partition函数读取相应的ShuffleblockFile，存入缓存区并继续进行后续的计算。
 - Shuffle Write阶段：ShuffleMapTask将输出RDD的记录按照分区函数划分道相应的bucket中，物化到本地磁盘形成ShuffleblockFile（之后才能被Shuffle Read阶段拉取）
 
-**9.Spark中RDD持久化和检查点机制有哪些异同点？**
+**9.Spark中RDD持久化和检查点机制有哪些异同点？**（比如说：lineage是否保留？两者的生命周期？）
 
+相同之处：
 
+1. RDD持久化和设置检查点机制都可以为Spark提供容错
+
+不同之处：
+
+1. RDD持久化在是在Spark**内部**某些节点存储多个备份，而检查点机制将RDD写入**外部可靠**的（本身具有容错机制）分布式文件系统，例如HDFS
+2. RDD持久化可以加快计算速度，并且作为备份快速恢复因故障丢失的数据分区，而检查点机制仅服务于Spark的故障恢复（减少恢复过程的代价）
+3. RDD的持久化发生在计算过程中，而写检查点操作是系统在作业结束之后启动一个独立的作业进行的。
+4. 二者的生命周期不同，持久化的RDD会在程序结束后会被清除，而检查点在程序结束后依然存在，不会被删除
+5. 持久化的RDD会保留RDD Lineage，但使用检查点机制会失去RDD Lineage
 
 **10.Spark的广播变量机制通常用于什么场景？**
+
+适用于需要节约内存的场景，如小表和大表自然连接（部门表join雇员表）
+
+大表的Shuffle开销大，把小表广播出去，避免大表进行Shuffle
