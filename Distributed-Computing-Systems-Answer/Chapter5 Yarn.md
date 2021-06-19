@@ -64,5 +64,5 @@
 
 12. **试画出Yarn同时运行MapReduce和Spark的架构图，其中Spark应用程序以Yarn Cilent模式执行。**
 
-    ![image-20210617162805269](.\static\yarn_struct.png)
+    ![image-20210617162805269](static/yarn_struct.png)
 
