@@ -13,7 +13,7 @@
 
 3. **MapReduce的主要部件有哪些？各个部件都有什么作用？**
 
-   MapReduce的主要部件有JobTracker,TaksTracker,Task和客户端。
+   MapReduce的主要部件有JobTracker,TaskTracker,Task和客户端。
 
    - job tracker 主节点运行的管理进程，负责系统的资源管理和作业job管理，将job拆分成任务task
    - task tracker 从节点运行的后台进程，管理单个节点上的资源和任务，使用slot等量划分节点上的资源，向job tracker汇报情况

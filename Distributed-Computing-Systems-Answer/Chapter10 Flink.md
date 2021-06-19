@@ -1,6 +1,6 @@
 # **Chapter10 Flink**
 
-1. **Flink使用何种数据模型表示数据？它与MapReduce、Spark和Storm等有何区别？**
+1. **Flink使用何种数据模型表示数据？它与MapReduce、Spark等有何区别？**
 
    Flink使用DataStream表示数据。DataStream与其他的框架的数据模型的区别是DataStream的数据是无界数据。
 
@@ -20,7 +20,7 @@
 
 5. **Flink中的逻辑执行图和物理执行图分别是如何产生的？与Spark有何区别？**
 
-   逻辑执行图由client进行产生优化，主要是对窄依赖的算子进行合并；物理执行图由job manager根据逻辑执行图产生。Spark不会在逻辑层面对算子进行合并，而是由Driver进行划分，将同个stage的算子放在同个物理节点，事实上实现了Flink中对逻辑执行图的优化。
+   逻辑执行图由Client进行优化，主要是对窄依赖的算子进行合并；物理执行图由job manager根据逻辑执行图产生。Spark不会在逻辑层面对算子进行合并，而是由Driver进行划分，将同个stage的算子放在同个物理节点，事实上实现了Flink中对逻辑执行图的优化。
 
 6. **Flink中非迭代任务间如何进行数据传输？与Spark和Storm有何区别？**
 
