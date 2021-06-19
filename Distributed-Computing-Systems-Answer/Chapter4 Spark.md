@@ -8,9 +8,11 @@
 
 **2.请说明Spark的逻辑计算模型和物理计算模型之间的关系**
 
-逻辑计算模型：
+逻辑计算模型：理论教材图4.2，图4.3
 
-物理执行角度：
+物理执行角度：理论教材图4.4，图4.5
+
+（有疑问）
 
 **3.什么是RDD Lineage？如果Lineage较长，如何加快故障恢复？**
 
@@ -46,7 +48,11 @@ Standalone Cluster模式
 
 **7.Spark中Stage和Task有怎样的联系？**
 
+一个Job会分为多组Task，每组Task被称为Stage，或者也被称为TaskSet，Stage是Job的基本调度单位。
 
+Stage代表了一组关联的、相互之间没有Shuffle依赖关系的Task组成的TaskSet
+
+（Task指运行在Executor上的工作单元）
 
 **8.Spark中Stage内部如何进行数据交换？Stage之间如何进行数据交换？**
 
