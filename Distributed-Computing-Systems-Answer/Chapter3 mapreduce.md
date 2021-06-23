@@ -15,16 +15,16 @@
 
    MapReduce的主要部件有JobTracker,TaksTracker,Task和客户端。
 
-   - job tracker 主节点运行的管理进程，负责系统的资源管理和作业job管理，将job拆分成任务task
-   - task tracker 从节点运行的后台进程，管理单个节点上的资源和任务，使用slot等量划分节点上的资源，向job tracker汇报情况
-   - task/child 可以执行map或reduce的任务，编码相同，所以不用区分是map还是reduce进程，具体使用的时候装填对应程序即可
-   - client/runjar 用户和map reduce的交互接口
+   - Job tracker 主节点运行的管理进程，负责系统的资源管理和作业job管理，将job拆分成任务task
+   - Task tracker 从节点运行的后台进程，管理单个节点上的资源和任务，使用slot等量划分节点上的资源，向job tracker汇报情况
+   - Task/child 可以执行Map或Reduce的任务，编码相同，所以不用区分是Map还是Reduce进程，具体使用的时候装填对应程序即可
+   - Client/RunJar 用户和Map Reduce的交互接口
 
 4. **如果不考虑数据的输入和数据输出阶段，MapReduce的工作过程可以划分为哪些阶段？通常来说哪一阶段对MapReduce程序性能的影响占据主导地位？**
 
    MapReduce的工作过程可以分为Map，Shuffle和Reduce三个阶段，其中，Map阶段将输入数据转化为键值对；Shuffle阶段将数据根据键值发送到不同的节点上；Reduce阶段接受数据，完成合并。
 
-   其中，Shuffle阶段对程序性能的影响占主导地位。因为这一阶段需要等待*对应的Map节点*将数据全部写入磁盘之后才能开始，且需要网络IO，耗时较大。
+   其中，Shuffle阶段对程序性能的影响占主导地位。因为这一阶段需要等待*对应的Map节点*将数据全部写入磁盘之后才能开始，且需要网络IO，耗时较大。（Map完成+有达到阈值的Map节点）
 
 5. **请简述MapReduce与HDFS之间的关系。**
 

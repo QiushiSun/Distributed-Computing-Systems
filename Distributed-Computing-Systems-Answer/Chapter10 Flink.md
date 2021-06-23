@@ -12,7 +12,7 @@
 
 3. **在Standalone模式下，Flink中的JobManager和TaskManager与Spark的Master和Worker在功能上是否完全一致？**
 
-   （书P60）不一致，Spark的Master和Worker两个部件负责的是资源管理，在资源管理部分与Flink的部件是一致的。但Flink的部件在Standalone模式下还负责作业管理，在作业管理的范畴内，JobManager负责功能与Driver类似，TaskManager负责的功能与Executor类似。
+   （书P60）不一致，Spark的Master和Worker两个部件负责的是资源管理，在资源管理部分与Flink的部件是一致的。但Flink的部件在Standalone模式下还负责作业管理，在作业管理的范畴内，JobManager负责功能与Driver类似，TaskManager负责的功能与Spark中的Executor类似。
 
 4. **在Standalone模式下，同一个TaskManager可能同时执行不同应用程序的任务，某种程度上会存在应用程序之间的相互干扰，引入Yarn后是如何解决这个问题的？**
 
