@@ -50,9 +50,9 @@
 
    不监控任务的具体情况，由AM处理
 
-9. **ApplicationManager由谁监控，并简述其容错恢复过程。**
+9. **ApplicationMaster由谁监控，并简述其容错恢复过程。**
 
-   AM由RM监控。如果AM发生故障，yarn会重启进程，但不会恢复运行状态，运行状态需要由框架恢复
+   AM由RM监控。如果AM发生故障，Yarn会重启进程，但不会恢复运行状态，运行状态需要由框架恢复
 
 10. **为什么引入Yarn之后，MapReduce无法独立运行？**
 
@@ -60,7 +60,7 @@
 
 11. **Yarn平台运行MapReduce的方式与Spark的Yarn Cluster和Yarn Client两种模式中的哪一种更像？为什么？**
 
-    对于Yarn平台上的Spark应用，Client模式的进程ExecutorLauncher不负责应用的管理，只负责分配资源和启动任务，而Cluster模式（ApplicationMaster）既负责应用的管理，也负责资源分配和启动任务。对于MapReduce，在启动任务时会启动管理进程MRAppMaster管理应用，同时负责资源分配和启动任务，与后者更接近。
+    对于Yarn平台上的Spark应用，Client模式的进程ExecutorLauncher不负责应用的管理，只负责分配资源和启动任务，而Cluster模式（ApplicationMaster）既负责应用的管理，也负责资源分配和启动任务。对于MapReduce，在启动任务时会启动管理进程MRAppMaster管理应用，同时负责资源分配和启动任务，故与Cluster模式更接近。
 
 12. **试画出Yarn同时运行MapReduce和Spark的架构图，其中Spark应用程序以Yarn Cilent模式执行。**
 
