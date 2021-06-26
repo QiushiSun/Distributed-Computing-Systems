@@ -31,13 +31,13 @@
 
    由NM接收AM的请求，然后启动/停止container
 
-6. **简要分析FIFO Scheduler，Capacity Scheduler，Fair Scheduler三种调度器的优缺点。【第三点待补充】**
+6. **简要分析FIFO Scheduler，Capacity Scheduler，Fair Scheduler三种调度器的优缺点。**
 
    FIFO调度器的实现非常简单，但可能导致一个应用独占所有的资源而其他的应用需要不断等待。
 
    Capacity调度器，可以避免一个应用独占所有的资源而其他的应用需要不断等待的情况，但当有队列空闲时，该队列的资源无法被其他应用使用，造成资源的浪费。
 
-   Fair调度器可以避免资源的浪费，但实现比较复杂，同时由于进程间的反复切换，其切换的代价比较大。
+   Fair调度器可以避免资源的浪费，但实现比较复杂，同时由于进程间的反复切换，其切换的代价比较大（资源抢占造成代价）。
 
 7. **请简述ApplicationMaster申请资源的过程。**
 
